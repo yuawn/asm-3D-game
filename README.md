@@ -1,6 +1,7 @@
 
 # Yuawn & Mao
 [![Build Status](https://travis-ci.org/ssspeedgit00/ASM_Final_Project_2017.svg?branch=master)](https://travis-ci.org/ssspeedgit00/ASM_Final_Project_2017)
+[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 [![Code Climate](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017/badges/gpa.svg)](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017)
 [![Issue Count](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017/badges/issue_count.svg)](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
