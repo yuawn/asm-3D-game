@@ -20,7 +20,7 @@ ASMFLAGS	= -f macho64 -w --prefix=_
 #$(foreach i,$(YUAWN2),./equipment/$(i))
 
 YUAWN		= main Enemy Object Weapon
-PPAP		= $(foreach i,$(YUAWN),./singularity/$(i))
+PPAP		= $(foreach i,$(YUAWN),./singularity/group_35_$(i))
 ASM 		= $(foreach i,$(PPAP),$(i).asm)
 OO	        = $(foreach i,$(PPAP),$(i).o)
 
