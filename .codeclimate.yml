@@ -1,19 +1,26 @@
 engines:
-  rubocop:
-    enabled: true
-  brakeman:
-   	enabled: true
-  eslint:
-    enabled: true
   csslint:
     enabled: true
   duplication:
-  	enabled: true
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+      - python
+      - php
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
 ratings:
   paths:
-  - singularity/**
-  - inc/**
-  - "**.asm"
+  - "**.css"
   - "**.inc"
-exclude_paths:
-- engine/**
+  - "**.js"
+  - "**.jsx"
+  - "**.module"
+  - "**.php"
+  - "**.py"
+  - "**.rb"
+exclude_paths: ["engine/**"]
