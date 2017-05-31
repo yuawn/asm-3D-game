@@ -16,7 +16,7 @@
 ```
 ./run.sh
 ```
-Enjoy the game :D , ಠ_ಠ
+Enjoy the game :D   ಠ_ಠ
 
 
 
