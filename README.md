@@ -11,7 +11,7 @@
 ```
 ./run.sh
 ```
-Thanks :D
+Enjoy the game :D
 
 
 
