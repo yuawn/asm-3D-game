@@ -1,5 +1,6 @@
 sigularity/* linguist-vendored
-engine/include/glm linguist-vendored=false
+engine/include/glm/* linguist-vendored=false
+#engine/init/glm/0.9.8.4
 *.html linguist-language=Assembly
 *.cpp linguist-language=Assembly
 *.hpp linguist-language=Assembly
