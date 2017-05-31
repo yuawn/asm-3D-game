@@ -8,3 +8,6 @@ notifications:
   - "<ssspeed00@gmail.com>"
 
 
+
+script:
+- "./script"
