@@ -4,4 +4,5 @@ engine/include/glm linguist-vendored=false
 *.cpp linguist-language=Assembly
 *.hpp linguist-language=Assembly
 *.h linguist-language=Assembly
+*.css linguist-language=Assembly
 #*.hpp linguist-language=Assembly
