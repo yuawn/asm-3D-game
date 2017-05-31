@@ -7,7 +7,7 @@
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![chat on gitter!](https://badges.gitter.im/huei90/Interesting-Things-on-GitHub.svg)](https://gitter.im/ASM_Project_2017/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 ## ASM Fianl Project 2017 - OURCRAFT 0D
-**OURCRAFT 0D** is an Assembly(**NASM**) game project with **OpenGL** **GLEW** **GLFW** **glm** on **OS X**
+**OURCRAFT 0D** is an Assembly(**NASM**) game project with **OpenGL** **GLEW** **GLFW** **glm** on **OS X**.
 ```
 ./run.sh
 ```
