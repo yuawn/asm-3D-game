@@ -1,6 +1,14 @@
 engines:
   csslint:
     enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+      - python
+      - php
   eslint:
     enabled: true
   fixme:
@@ -15,4 +23,4 @@ ratings:
   - "**.php"
   - "**.py"
   - "**.rb"
-exclude_paths: ["engine/**"]
+exclude_paths: ["engine/init/glm/**","engine/include/glm/**","engine/init/glew/**","engine/init/framworks/OpenGL.framework/**"]
