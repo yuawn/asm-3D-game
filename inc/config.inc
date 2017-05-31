@@ -1,0 +1,28 @@
+;    :D
+
+WINDOW_WIDTH            EQU     1240
+WINDOW_HEIGHT           EQU     720
+
+ENEMY_AMOUNT            EQU     20
+BULLET_AMOUNT           EQU     10
+
+WEAPON_SPEED            EQU     f16_0
+WEAPON_RADIUS           EQU     f5_0
+
+in_rd                   EQU     f3_0
+ot_rd                   EQU     f23_2
+
+section .data
+
+
+;Mao  OAO!!!
+;.h .hpp
+EXTERN  glewExperimental
+;GLFWwindow*
+EXTERN  window
+
+;GLuint
+EXTERN  TextureID , MatrixID , programID
+
+;FLOAT
+;EXTERN  WEAPON_SPEED , WEAPON_RADIUS
