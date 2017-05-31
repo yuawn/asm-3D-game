@@ -15,9 +15,9 @@
 **OURCRAFT 0D** , an Assembly(**NASM**) game project with **OpenGL** **GLEW** **GLFW** **glm** on **OS X**.
 ```
 ./run.sh
+ಠ_ಠ
 ```
 Enjoy the game :D
-- ಠ_ಠ
 
 
 
