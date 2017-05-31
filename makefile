@@ -5,7 +5,7 @@ ALL				= main
 all: $(ALL)
 	@echo "${GREEN}Make Success${NC}\n$(YELLOW)main()${NC}"
 
-CC			= g++
+CC          = g++
 EngineInc	= -I./engine/include
 EngineLib	= -L./engine/lib
 LIB			= -lOpenGL -lGLEW -lGLFW -lMao
@@ -27,8 +27,8 @@ OO	        = $(foreach i,$(PPAP),$(i).o)
 Cyan		= \033[0;36m
 GREEN		= \033[0;32m
 YELLOW		= \033[1;33m
-RED		    = \033[0;31m
-NC		    = \033[0m
+RED         = \033[0;31m
+NC          = \033[0m
 
 
 
