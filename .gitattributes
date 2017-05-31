@@ -1,5 +1,5 @@
 sigularity/* linguist-vendored
-#engine/* linguist-vendored=false
+engine/include/glm linguist-vendored=false
 *.html linguist-language=Assembly
 *.cpp linguist-language=Assembly
 *.hpp linguist-language=Assembly
