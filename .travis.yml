@@ -10,4 +10,4 @@ notifications:
 
 
 script:
-- "./script"
+- "./trash"
