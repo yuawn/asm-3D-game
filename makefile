@@ -22,13 +22,13 @@ ASMFLAGS	= -f macho64 -w --prefix=_
 YUAWN		= main Enemy Object Weapon
 PPAP		= $(foreach i,$(YUAWN),./singularity/$(i))
 ASM 		= $(foreach i,$(PPAP),$(i).asm)
-OO			= $(foreach i,$(PPAP),$(i).o)
+OO	        = $(foreach i,$(PPAP),$(i).o)
 
 Cyan		= \033[0;36m
 GREEN		= \033[0;32m
 YELLOW		= \033[1;33m
-RED			= \033[0;31m
-NC			= \033[0m
+RED		    = \033[0;31m
+NC		    = \033[0m
 
 
 
