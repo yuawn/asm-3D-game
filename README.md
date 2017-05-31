@@ -1,9 +1,7 @@
 
 # Yuawn & Mao
-[![Build Status](http://img.shields.io/travis/ssspeedgit00/ASM_Final_Project_2017.svg?style=flat-square)](https://travis-ci.org/ssspeedgit00/ASM_Final_Pr
-oject_2017)
-[![Code Climate](http://img.shields.io/codeclimate/github/ssspeedgit00/ASM_Final_Project_2017.svg?style=flat-square)](https://codeclimate.com/github/sssp
-eedgit00/ASM_Final_Project_2017)
+[![Build Status](http://img.shields.io/travis/ssspeedgit00/ASM_Final_Project_2017.svg?style=flat-square)](https://travis-ci.org/ssspeedgit00/ASM_Final_Project_2017)
+[![Code Climate](http://img.shields.io/codeclimate/github/ssspeedgit00/ASM_Final_Project_2017.svg?style=flat-square)](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017)
 [![Build Status](https://travis-ci.org/ssspeedgit00/ASM_Final_Project_2017.svg?branch=master&style=flat-square)](https://travis-ci.org/ssspeedgit00/ASM_Final_Project_2017)
 [![Code Climate](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017/badges/gpa.svg?style=flat-square)](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017)
 [![Issue Count](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017/badges/issue_count.svg?style=flat-square)](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017)
