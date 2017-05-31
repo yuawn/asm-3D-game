@@ -3,7 +3,7 @@
 [![Build Status](http://img.shields.io/travis/ssspeedgit00/ASM_Final_Project_2017.svg?style=flat-square)](https://travis-ci.org/ssspeedgit00/ASM_Final_Project_2017)
 [![Code Climate](http://img.shields.io/codeclimate/github/ssspeedgit00/ASM_Final_Project_2017.svg?style=flat-square)](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017)
 ![ASM baby](https://img.shields.io/badge/ASM-baby-orange.svg?style=flat-square)
-![元 毛](https://img.shields.io/badge/元-毛-lightgray.svg?style=flat-square)
+![元 毛](https://img.shields.io/badge/元-毛-blue.svg?style=flat-square)
 [![Issue Count](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017/badges/issue_count.svg?style=flat-square)](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103&style=flat-square)](https://github.com/ellerbrock/open-source-badges/)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103&style=flat-square)](https://opensource.org/licenses/mit-license.php)
