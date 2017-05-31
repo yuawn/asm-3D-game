@@ -1,2 +1,3 @@
 sigularity/* linguist-vendored
 engine/* linguist-documentation
+*.html linguist-language=Assembly
