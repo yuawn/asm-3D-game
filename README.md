@@ -17,7 +17,7 @@
 ```
 brew install glew glfw glm
 ```
-- Gaming
+- Start the game
 ```
 ./run.sh
 ```
