@@ -357,7 +357,7 @@ IN:
     movq    xmm0,   player
     movsd   xmm1,   [rbp - 0x1240 - 0x10 + 8]
     movq    xmm2,   direction
-    movsd   xmm3,   [rbp - 0x1240 - 0x20 + 8] 
+    movsd   xmm3,   [rbp - 0x1240 - 0x20 + 8]
     call    Weapon_init
 
     mov     eax,    g( now_bullet )
@@ -556,7 +556,6 @@ EXIT:
         call    sz
         lea     rdi,    terrain
         call    ogg
-        ;call    main
     %endif
 
     %ifdef  PRINT
