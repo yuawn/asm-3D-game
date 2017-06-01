@@ -130,11 +130,11 @@ Yuawn:
     ;lea     rdi, g( terrain )  ; GLOBAL
     lea     rdi,    terrain
     call    OObject
-    Object_init_mac terrain , 'src/land.obj' , 'src/land.dds'
+    Object_init_mac terrain , 'src/landx3.obj' , 'src/land.dds'
 
     lea     rdi, skybox
     call    OObject
-    Object_init_mac skybox , 'src/skybox.obj' , 'src/skybox.dds'
+    Object_init_mac skybox , 'src/skyboxx3.obj' , 'src/skybox.dds'
     ;;;;; TAG
     lea     rdi, gun
     call    EEquip
