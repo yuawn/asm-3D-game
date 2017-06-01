@@ -17,6 +17,7 @@
 ./run.sh
 ```
 Enjoy the game :D
+![img]("https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/gamestarCom.png")
 
 
 
