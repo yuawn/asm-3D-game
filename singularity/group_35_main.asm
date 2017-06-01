@@ -27,6 +27,7 @@ section .data
     db_lasttime         db  'lasttime ---> %f' , 10 , 0
     nENDLINEtag         db  'Tag' , 0   
     sEXIT               db  'EXIT' , 10 , 0
+    cms                 db  'Coming Soon.......' , 10 , 0
 
 
 
@@ -64,6 +65,9 @@ Yuawn:
     %define lim             [rbp - 0x1290]
     %define lim2            [rbp - 0x1298]
     %define isCollision     [rbp - 0x12a0]
+    %define startMenu       [rbp - 0x12a0 - Object_s * 2]
+    %define learnMode       [rbp - 0x12a0 - Object_s * 4]
+    %define competMode      [rbp - 0x12a0 - Object_s * 6]
 
 
     call    glfwInit
@@ -83,7 +87,7 @@ Yuawn:
     call    glewInit
 
     yuawn_x64_call  glfwSetInputMode , g( window ) , GLFW_STICKY_KEYS , GL_TRUE
-    yuawn_x64_call  glfwSetInputMode , g( window ) , GLFW_CURSOR , GLFW_CURSOR_DISABLED
+    
     call    glfwPollEvents
 
     %ifdef  DEBUG
@@ -177,6 +181,152 @@ Yuawn:
 
     %assign i i+1
     %endrep
+
+    lea     rdi,    startMenu
+    call    OObject
+    Object_init_mac startMenu , 'src/start.obj' , 'src/gamestart_none.dds'
+    
+    lea     rdi,    learnMode
+    call    OObject
+    Object_init_mac learnMode , 'src/start.obj' , 'src/gamestart_learn.dds'
+    
+    lea     rdi,    competMode
+    call    OObject
+    Object_init_mac competMode , 'src/start.obj' , 'src/gamestart_com.dds'
+
+    yuawn_xmm_call  glClearColor , g( f0 ) , g( f0 ) , g( f0_4 ) , g( f0 )
+
+Menu:
+    mov     rdi,    GL_COLOR_BUFFER_BIT
+    or      rdi,    GL_DEPTH_BUFFER_BIT
+    call    glClear
+
+    yuawn_x64_call  glUseProgram , g( programID )
+
+    call    y4_2
+
+    mov     rdi,    g( window )
+    lea     rsi,    tmp
+    lea     rdx,    tmp2
+    call    glfwGetCursorPos   
+
+IF:
+    movsd   xmm0,   tmp
+    movsd   xmm1,   g( d180_0 )
+    comisd  xmm0,   xmm1
+    jc      PVP
+
+    movsd   xmm0,   g( d310_0 )
+    movsd   xmm1,   tmp
+    comisd  xmm0,   xmm1
+    jc      PVP
+
+    movsd   xmm0,   tmp2
+    movsd   xmm1,   g( d300_0 )
+    comisd  xmm0,   xmm1
+    jc      PVP
+
+    movsd   xmm0,   g( d360_0 )
+    movsd   xmm1,   tmp2
+    comisd  xmm0,   xmm1
+    jc      PVP
+
+Learning:
+    ;mov     rdi,    fire
+    ;call    printf
+
+    lea     rdi,    learnMode
+    call    Object_draw
+
+    yuawn_x64_call  glfwGetMouseButton , g( window ) , GLFW_MOUSE_BUTTON_LEFT
+    mov     rbx,    1
+    cmp     rax,    rbx
+    jnz     BOT0
+
+    jmp     StartLearingMode
+
+PVP:
+    movsd   xmm0,   tmp
+    movsd   xmm1,   g( d925_0 )
+    comisd  xmm0,   xmm1
+    jc      ELSE
+
+    movsd   xmm0,   g( d1245_0 )
+    movsd   xmm1,   tmp
+    comisd  xmm0,   xmm1
+    jc      ELSE
+
+    movsd   xmm0,   tmp2
+    movsd   xmm1,   g( d300_0 )
+    comisd  xmm0,   xmm1
+    jc      ELSE
+
+    movsd   xmm0,   g( d360_0 )
+    movsd   xmm1,   tmp2
+    comisd  xmm0,   xmm1
+    jc      ELSE
+
+inPVP:
+    lea     rdi,    competMode
+    call    Object_draw
+
+    yuawn_x64_call  glfwGetMouseButton , g( window ) , GLFW_MOUSE_BUTTON_LEFT
+    mov     rbx,    1
+    cmp     rax,    rbx
+    jnz     BOT0
+
+    mov     rdi,    cms
+    call    printf
+
+    jmp     BOT0
+
+ELSE:
+    lea     rdi,    startMenu
+    call    Object_draw
+
+BOT0:
+    yuawn_x64_call  glfwSwapBuffers , g( window )
+    yuawn_x64_call  glfwPollEvents
+
+    yuawn_x64_call  glfwGetKey , g( window ) , GLFW_KEY_ESCAPE
+    mov     rbx,    1
+    cmp     rax,    rbx
+    jz      EXIT0
+
+    yuawn_x64_call  glfwWindowShouldClose , g( window )
+    mov     rbx,    0
+    cmp     rax,    rbx
+    jnz     EXIT0
+
+    jmp     Menu
+
+EXIT0:
+    lea     rdi,    startMenu
+    call    Object_clrbuf
+
+    lea     rdi,    learnMode
+    call    Object_clrbuf
+
+    lea     rdi,    competMode
+    call    Object_clrbuf
+
+    jmp     EXIT
+
+
+
+StartLearingMode:
+    lea     rdi,    startMenu
+    call    Object_clrbuf
+
+    lea     rdi,    learnMode
+    call    Object_clrbuf
+
+    lea     rdi,    competMode
+    call    Object_clrbuf
+
+    yuawn_x64_call  glfwSetInputMode , g( window ) , GLFW_CURSOR , GLFW_CURSOR_DISABLED
+
+Origin_Do:
 
     call    glfwGetTime
     movq    lastTime, xmm0
@@ -528,6 +678,9 @@ OUT:
     %endrep
 
     call    y4 ; MVP
+
+    lea     rdi,    startMenu
+    call    Object_draw
 
     lea     rdi,    terrain
     call    Object_draw

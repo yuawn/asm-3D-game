@@ -34,6 +34,7 @@ GLFW_KEY_ESCAPE                   EQU   256
 ;sym
 EXTERN  glfwInit , glfwWindowHint , glfwCreateWindow , glfwMakeContextCurrent , glfwSetInputMode , glfwPollEvents\
 , glfwSetCursorPos , glfwGetTime , glfwGetMouseButton , glfwGetKey , glfwSwapBuffers , glfwWindowShouldClose \
+, glfwGetCursorPos
 
 
 EXTERN  glewInit

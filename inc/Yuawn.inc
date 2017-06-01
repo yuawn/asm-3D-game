@@ -125,7 +125,7 @@ extern  _ZN6ObjectC1Ev , _ZN5EnemyC1Ev , _ZN9EquipmentC1Ev , _Z2y1P5EnemyP6Objec
 , _ZN6Object13moveCollisionEN3glm5tvec3IfLNS0_9precisionE0EEES3_ , _Z2y5ii \
 , _ZN5Enemy4moveEN3glm5tvec3IfLNS0_9precisionE0EEE , _Z17setPositionHeightf \
 , _Z25computeMatricesFromInputsb , _ZN9Equipment5aimAtEN3glm5tvec3IfLNS0_9precisionE0EEES3_ \
-, _ZN5Enemy10selfRotateEf , _ZN6Object4drawEv
+, _ZN5Enemy10selfRotateEf , _ZN6Object4drawEv , _Z4y4_2v
 
 
 
@@ -167,6 +167,7 @@ y1                  EQU   _Z2y1P5EnemyP6Object
 y2                  EQU   _Z2y2N3glm5tvec3IfLNS_9precisionE0EEES2_
 y3                  EQU   _Z2y3v
 y4                  EQU   _Z2y4N3glm5tvec3IfLNS_9precisionE0EEES2_S2_
+y4_2                EQU   _Z4y4_2v
 y5                  EQU   _Z2y5ii
 vy4                 EQU   _Z2y4v
 abc                 EQU   _Z3abcffff
