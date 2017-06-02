@@ -1,5 +1,5 @@
-obj = open("skybox.obj","rb")
-res = open("skyboxx3.obj","wb")
+obj = open("robot.obj","rb")
+res = open("robotx5.obj","wb")
     
 
 o = ['v']
@@ -22,7 +22,7 @@ def resize_v(size):
             
 
 
-resize_v(3);
+resize_v(5);
 
 
 

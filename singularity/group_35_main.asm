@@ -607,10 +607,49 @@ OUT:
 
             mov     rdi,    tmp2
             call    get_now_blood_asm
+            mov     rbx,    800
+            cmp     rax,    rbx
+            jnz     sz600
+            mov     rdi,    tmp2
+            Object_init_mac [rdi] , 'src/robotx2.obj' , 'src/robot.dds'
+            
+            sz600:
+            mov     rdi,    tmp2
+            call    get_now_blood_asm
+            mov     rbx,    600
+            cmp     rax,    rbx
+            jnz     sz400
+            mov     rdi,    tmp2
+            Object_init_mac [rdi] , 'src/robotx3.obj' , 'src/robot.dds'
+
+            sz400:
+            mov     rdi,    tmp2
+            call    get_now_blood_asm
+            mov     rbx,    400
+            cmp     rax,    rbx
+            jnz     sz200
+            mov     rdi,    tmp2
+            Object_init_mac [rdi] , 'src/robotx4.obj' , 'src/robot.dds'
+
+            sz200:
+            mov     rdi,    tmp2
+            call    get_now_blood_asm
+            mov     rbx,    200
+            cmp     rax,    rbx
+            jnz     sz0
+            mov     rdi,    tmp2
+            Object_init_mac [rdi] , 'src/robotx5.obj' , 'src/robot.dds'
+
+            sz0:
+            
+            ;~~~~~~~~~~~~~~~~~~~~~~~~~~blood - ad < 0 ? 0 : blood - ad 
+            mov     rdi,    tmp2
+            call    get_now_blood_asm
 
             mov     rbx,    0
             cmp     rax,    rbx
             jnz     BOT2
+            ;~~~~~~~~~~~~~~~~~~~~~~~~~~blood = 0 ?
 
             call    rand_vec3
             movq    tmp_vec3, xmm0
