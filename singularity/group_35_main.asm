@@ -3,9 +3,7 @@
 %include "inc/Yuawn.inc"
 global  Yuawn
 
-extern  main , aaa , bullet , now_bullet \
-,aplayer , adirection , anextStep \
-, vec3z ;gun , terrain , skybox , enemy
+
 
 section .data
 

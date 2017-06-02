@@ -16,6 +16,7 @@ section .data
 
 
 ;Mao  OAO!!!
+extern  main , aaa , bullet , now_bullet ,aplayer , adirection , anextStep , vec3z
 ;.h .hpp
 EXTERN  glewExperimental
 ;GLFWwindow*
