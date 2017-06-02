@@ -166,7 +166,8 @@ Yuawn:
         lea     rdi,    enemy
         add     rdi,    Enemy_s * i
 
-        Object_init_mac [rdi] , 'src/robot.obj' , 'src/robot.dds'
+        ;Object_init_mac [rdi] , 'src/robot.obj' , 'src/robot.dds'
+        Object_init_mac [rdi] , 'src/bigslime.obj' , 'src/slime.dds'
         
         ;~~~~~~~~~~~~~~~~~~~~~~~~~BLOOD
         lea     rdi,    enemy
@@ -334,6 +335,9 @@ StartLearingMode:
 
     lea     rdi,    competMode
     call    Object_clrbuf
+
+    ;mov     rdi,    s0t
+    ;call    printf
 
     yuawn_x64_call  glfwSetInputMode , g( window ) , GLFW_CURSOR , GLFW_CURSOR_DISABLED
 
@@ -641,7 +645,7 @@ OUT:
             Object_init_mac [rdi] , 'src/robotx5.obj' , 'src/robot.dds'
 
             sz0:
-            
+
             ;~~~~~~~~~~~~~~~~~~~~~~~~~~blood - ad < 0 ? 0 : blood - ad 
             mov     rdi,    tmp2
             call    get_now_blood_asm
