@@ -1,6 +1,7 @@
 ;Yuawn
 
 ;%define DEBUG
+%define Original_Enemy_Bullet_p
 
 %include "inc/:D.inc"
 %include "inc/lazy.inc"
@@ -125,7 +126,8 @@ extern  _ZN6ObjectC1Ev , _ZN5EnemyC1Ev , _ZN9EquipmentC1Ev , _Z2y1P5EnemyP6Objec
 , _ZN6Object13moveCollisionEN3glm5tvec3IfLNS0_9precisionE0EEES3_ , _Z2y5ii \
 , _ZN5Enemy4moveEN3glm5tvec3IfLNS0_9precisionE0EEE , _Z17setPositionHeightf \
 , _Z25computeMatricesFromInputsb , _ZN9Equipment5aimAtEN3glm5tvec3IfLNS0_9precisionE0EEES3_ \
-, _ZN5Enemy10selfRotateEf , _ZN6Object4drawEv , _Z4y4_2v
+, _ZN5Enemy10selfRotateEf , _ZN6Object4drawEv , _Z4y4_2v , _ZN5Enemy6DamageEN3glm5tvec3IfLNS0_9precisionE0EEEl \
+
 
 
 
@@ -145,6 +147,7 @@ weap_getstate       EQU   _ZN6Weapon8getStateEv
 weap_move           EQU   _ZN6Weapon4moveEv
 weap_getpos         EQU   _ZN6Weapon11getPositionEv
 weap_dead           EQU   _ZN6Weapon4deadEv
+enemy_dama          EQU   _ZN5Enemy6DamageEN3glm5tvec3IfLNS0_9precisionE0EEEl
 enemy_isdam         EQU   _ZN5Enemy8isDamageEN3glm5tvec3IfLNS0_9precisionE0EEE
 enemy_move          EQU   _ZN5Enemy4moveEN3glm5tvec3IfLNS0_9precisionE0EEE
 enemy_selfro        EQU   _ZN5Enemy10selfRotateEf

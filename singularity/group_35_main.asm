@@ -3,7 +3,8 @@
 %include "inc/Yuawn.inc"
 global  Yuawn
 
-
+extern  set_now_blood_asm , set_blood_asm , weapon_get_ad_asm \
+, weapon_set_ad_asm
 
 section .data
 
@@ -159,17 +160,29 @@ Yuawn:
     %assign i 0
     %rep    20
 
-        lea     rdi, enemy
-        add     rdi, Enemy_s * i
+        lea     rdi,    enemy
+        add     rdi,    Enemy_s * i
         call    EEnemy
-        lea     rdi, enemy
-        add     rdi, Enemy_s * i
+        lea     rdi,    enemy
+        add     rdi,    Enemy_s * i
 
         Object_init_mac [rdi] , 'src/robot.obj' , 'src/robot.dds'
         
-        lea     rdi, enemy
-        add     rdi, Enemy_s * i
-        lea     rsi, terrain
+        ;~~~~~~~~~~~~~~~~~~~~~~~~~BLOOD
+        lea     rdi,    enemy
+        add     rdi,    Enemy_s * i
+        mov     rsi,    Enemy_init_now_blood
+        call    set_now_blood_asm
+
+        lea     rdi,    enemy
+        add     rdi,    Enemy_s * i
+        mov     rsi,    Enemy_init_blood
+        call    set_blood_asm
+        ;~~~~~~~~~~~~~~~~~~~~~~~~~BLOOD
+
+        lea     rdi,    enemy
+        add     rdi,    Enemy_s * i
+        lea     rsi,    terrain
         call    y1
 
         %ifdef  DEBUG
@@ -508,6 +521,13 @@ IN:
     movsd   xmm3,   [rbp - 0x1240 - 0x20 + 8]
     call    Weapon_init
 
+    ;~~~~~~~~~~~~~~~~~~~~~~~~~WEAPON_INIT_AD
+    lea     rdi,    g( bullet )
+    add     rdi,    tmp
+    mov     rsi,    WEAPON_INIT_AD
+    call    weapon_set_ad_asm
+    ;~~~~~~~~~~~~~~~~~~~~~~~~~WEAPON_INIT_AD
+
     mov     eax,    g( now_bullet )
     inc     eax
     mov     g( now_bullet ), eax
@@ -528,6 +548,10 @@ IN:
 OUT:
     ;call    y3
     ;jmp     QQ    ; SHIT .....
+    %ifdef  Original_Enemy_Bullet_p
+        jmp Original_Enemy_Bullet
+    %endif
+
     lea     rax,    g( bullet )
     mov     tmp,    rax
 
@@ -558,8 +582,13 @@ OUT:
 
             mov     rdi,    tmp
             call    weap_getpos
+
+            mov     rdi,    tmp
+            call    weapon_get_ad_asm
+            mov     rsi,    rax
+
             mov     rdi,    tmp2
-            call    enemy_isdam 
+            call    enemy_dama
             mov     rbx,    1
             cmp     rax,    rbx
             jnz     BOT2
@@ -603,8 +632,103 @@ OUT:
         mov     rbx,    lim
         cmp     rax,    rbx
         jc      L1
+
+
+
+
+
+
+
+    jmp Original_Enemy_Bullet_End
+
+
+Original_Enemy_Bullet:
+    lea     rax,    g( bullet )
+    mov     tmp,    rax
+
+    mov     qword lim,    BULLET_AMOUNT
+    mov     qword lim2,   ENEMY_AMOUNT
+    mov     qword now,    0
+  
+    lL1:
+        mov     rdi,    tmp 
+        call    weap_getstate
+        mov     rbx,    1
+        cmp     rax,    rbx
+        jnz     BOT
+
+        mov     rdi,    tmp
+        call    weap_move
+
+        %ifdef  DEBUG
+            mov     rdi,    tmp
+            call    weapon_get_ad_asm
+            mov     rsi,    rax
+            mov     rdi,    sd
+            call    printf
+        %endif
+
+        lea     rax,    enemy
+        mov     tmp2,   rax
+        mov     qword now2,   0
+
+        lL2:
+            %ifdef  DEBUG
+                mov     rdi,    bar
+                call    printf
+                yuawn_x64_call  y5 , now , now2
+            %endif
+
+            mov     rdi,    tmp
+            call    weap_getpos
+            mov     rdi,    tmp2
+            call    enemy_isdam 
+            mov     rbx,    1
+            cmp     rax,    rbx
+            jnz     BOT2
+
+            mov     rdi,    tmp
+            call    weap_dead
+
+            call    rand_vec3
+            movq    tmp_vec3, xmm0
+            movsd   [rbp - 0x1220 - 0x10 + 8], xmm1
+
+            lea     rdi,    terrain
+            movq    xmm0,   tmp_vec3
+            movsd   xmm1,   [rbp - 0x1220 - 0x10 + 8]
+            movq    xmm2,   g( vec3z )
+            lea     rsi,    g( vec3z )
+            movsd   xmm3,   [rsi + 8]
+
+            call    Object_mvcolli
+
+            movsd   [rbp - 0x1220 - 0x10 + 8], xmm0
+            mov     rdi,    tmp2
+            call    enemy_move
+        lBOT2:
+            mov     rax,    tmp2
+            add     rax,    Enemy_s 
+            mov     tmp2,   rax
+            mov     rax,    now2
+            inc     rax
+            mov     qword now2, rax
+            mov     rbx,    lim2
+            cmp     rax,    rbx
+            jc      lL2
+    lBOT:
+        mov     rax,    tmp
+        add     rax,    Weapon_s
+        mov     tmp,    rax
+        mov     rax,    now
+        inc     rax
+        mov     qword now, rax
+        mov     rbx,    lim
+        cmp     rax,    rbx
+        jc      lL1
  
     QQ:
+Original_Enemy_Bullet_End:
     ;movq    xmm0,   player
     ;movq    xmm1,   [rbp - 0x1240 - 0x10 + 8]
     ;movq    xmm2,   direction
@@ -703,6 +827,7 @@ JUD:
     jmp     DO
 
 EXIT:
+    call    sz
     %ifdef  DEBUG
         call    sz
         lea     rdi,    terrain

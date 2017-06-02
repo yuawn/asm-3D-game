@@ -8,9 +8,13 @@ BULLET_AMOUNT           EQU     10
 
 WEAPON_SPEED            EQU     f16_0
 WEAPON_RADIUS           EQU     f5_0
+WEAPON_INIT_AD          EQU     200
 
 in_rd                   EQU     f3_0
 ot_rd                   EQU     f23_2
+
+Enemy_init_now_blood    EQU     1000
+Enemy_init_blood        EQU     1000
 
 section .data
 

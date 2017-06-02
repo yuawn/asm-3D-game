@@ -1,9 +1,9 @@
 ;Fucking Object-Oiented (foo) in ASM :D
 Object_s                          EQU   88
 GLuint_s                          EQU   4
-Enemy_s                           EQU   128
+Enemy_s                           EQU   144
 Equipment_s                       EQU   200
-Weapon_s                          EQU   200
+Weapon_s                          EQU   208
 vector_vec2_s                     EQU   24
 vector_vec3_s                     EQU   24
 vec2_s                            EQU   8

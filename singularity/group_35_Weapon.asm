@@ -16,11 +16,14 @@ struc   Weapon_asm
 
     .vertexbuffer   resd    1 ; 4
     .uvbuffer       resd    1 ; 4
-    .Texture        resd    2 ; 4
+    .Texture        resd    1 ; 4
+
+    .ad             resq    1 ; 8
 endstruc
 
 
-global  init_asm , weapon_move_asm , weapon_dead_asm , weapon_getPosition_asm
+global  init_asm , weapon_move_asm , weapon_dead_asm , weapon_getPosition_asm \
+, weapon_get_ad_asm , weapon_set_ad_asm
 
 section .data
 
@@ -84,6 +87,24 @@ weapon_dead_asm:
     leave
     ret
 
+weapon_get_ad_asm:
+    push    rbp
+    mov     rbp,    rsp
+
+    mov     rax,    [rdi + Weapon_asm.ad]
+
+    leave
+    ret
+
+
+weapon_set_ad_asm:
+    push    rbp
+    mov     rbp,    rsp
+
+    mov     [rdi + Weapon_asm.ad],  rsi
+
+    leave
+    ret
 
 weapon_getPosition_asm:
     push    rbp

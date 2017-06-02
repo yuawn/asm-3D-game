@@ -10,7 +10,7 @@ struc   Object_asm
     .normals        resq    3 ; 24
     .vertexbuffer   resd    1 ; 4
     .uvbuffer       resd    1 ; 4
-    .Texture        resd    2 ; 4
+    .Texture        resd    1 ; 4
 endstruc
 
 
