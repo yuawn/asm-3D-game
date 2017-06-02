@@ -9,6 +9,8 @@ BULLET_AMOUNT           EQU     10
 WEAPON_SPEED            EQU     f16_0
 WEAPON_RADIUS           EQU     f5_0
 WEAPON_INIT_AD          EQU     200
+WEAPON_CD               EQU     f0_5
+WEAPON_CD_sd            EQU     d0_5
 
 in_rd                   EQU     f3_0
 ot_rd                   EQU     f23_2

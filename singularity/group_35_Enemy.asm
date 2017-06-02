@@ -23,7 +23,8 @@ struc   Enemy_asm
 
 endstruc
 
-global  asm_asm , Damage_asm , set_now_blood_asm , set_blood_asm
+global  asm_asm , Damage_asm , set_now_blood_asm , set_blood_asm \
+, get_now_blood_asm
 
 section .data
 
@@ -80,6 +81,17 @@ set_now_blood_asm:
 
     leave
     ret
+
+
+get_now_blood_asm:
+    push    rbp
+    mov     rbp,    rsp
+
+    mov     rax,   [rdi + Enemy_asm.now_blood]
+
+    leave
+    ret
+
 
 set_blood_asm:
     push    rbp
@@ -197,7 +209,8 @@ yz: jc      OUT
     mov     rdi,    sd
     call    printf
 
-    mov     rax,    1
+    mov     rcx,    class
+    mov     rax,    [ rcx + Enemy_asm.now_blood ]
     leave
     ret
 
@@ -209,7 +222,7 @@ yz: jc      OUT
     cmp     rbx,    rax
     jc      LOOP
 
-    mov     rax,    0
+    mov     rax,    -1
     leave
     ret
 

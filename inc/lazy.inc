@@ -4,6 +4,7 @@ section .data
     f0_2        dd  0.2
     f0_3        dd  0.3
     f0_4        dd  0.4
+    f0_5        dd  0.5
     f0_7        dd  0.7
     f0_8        dd  0.8
     f1_0        dd  1.0
@@ -33,6 +34,7 @@ section .data
     d0_2        dq  0.2
     d0_3        dq  0.3
     d0_4        dq  0.4
+    d0_5        dq  0.5
     d0_7        dq  0.7
     d0_8        dq  0.8
     d1_0        dq  1.0

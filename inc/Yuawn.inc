@@ -1,7 +1,7 @@
 ;Yuawn
 
 ;%define DEBUG
-%define Original_Enemy_Bullet_p
+;%define Original_Enemy_Bullet_p
 
 %include "inc/:D.inc"
 %include "inc/lazy.inc"

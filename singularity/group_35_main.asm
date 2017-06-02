@@ -4,7 +4,7 @@
 global  Yuawn
 
 extern  set_now_blood_asm , set_blood_asm , weapon_get_ad_asm \
-, weapon_set_ad_asm
+, weapon_set_ad_asm , get_now_blood_asm
 
 section .data
 
@@ -417,7 +417,7 @@ DO:
     movq    xmm0, currentTime
     subsd   xmm0, lastTime
     cvtsd2ss    xmm0, xmm0
-    movss   xmm1, g( f1_0 )
+    movss   xmm1, g( WEAPON_CD )
     comiss  xmm0, xmm1
 
     jc      littlefish
@@ -433,7 +433,7 @@ DO:
 
     mov     qword nbFrames, 0
     movq    xmm0, lastTime
-    addsd   xmm0, g( d1_0 )
+    addsd   xmm0, g( WEAPON_CD_sd  )
     movq    lastTime, xmm0
 
     %ifdef  DEBUG
@@ -552,6 +552,9 @@ OUT:
         jmp Original_Enemy_Bullet
     %endif
 
+    ;mov     rdi,    s0t
+    ;call    printf
+
     lea     rax,    g( bullet )
     mov     tmp,    rax
 
@@ -574,12 +577,6 @@ OUT:
         mov     qword now2,   0
 
         L2:
-            %ifdef  DEBUG
-                mov     rdi,    bar
-                call    printf
-                yuawn_x64_call  y5 , now , now2
-            %endif
-
             mov     rdi,    tmp
             call    weap_getpos
 
@@ -589,12 +586,31 @@ OUT:
 
             mov     rdi,    tmp2
             call    enemy_dama
-            mov     rbx,    1
+
+            ;mov     rbx,    0
+            ;mov     rax,    -1
+            ;cmp     rax,    rbx
+            ;jl      abcc
+            ;mov     rdi,    sd
+            ;mov     rsi,    rax
+            ;call    printf
+            ;abcc:
+
+            mov     rbx,    0
             cmp     rax,    rbx
-            jnz     BOT2
+            jl      BOT2
+
+            yuawn_print 'innnnnnnnn'
 
             mov     rdi,    tmp
             call    weap_dead
+
+            mov     rdi,    tmp2
+            call    get_now_blood_asm
+
+            mov     rbx,    0
+            cmp     rax,    rbx
+            jnz     BOT2
 
             call    rand_vec3
             movq    tmp_vec3, xmm0
