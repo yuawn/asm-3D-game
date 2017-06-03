@@ -23,7 +23,12 @@ brew install glew glfw glm
 ```
 Enjoy the game :D
 ![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/gamestarCom.png)
+![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/i.png)
 src:https://staticdelivery.nexusmods.com/mods/161/images/68-3-1351215827.jpg
+![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/a.png)
+![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/f.png)
+![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/h.png)
+
 
 
 
