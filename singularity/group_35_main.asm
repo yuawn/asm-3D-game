@@ -6,6 +6,8 @@ global  Yuawn
 extern  set_now_blood_asm , set_blood_asm , weapon_get_ad_asm \
 , weapon_set_ad_asm , get_now_blood_asm
 
+
+
 section .data
 
     mvp                 db  'MVP' , 0
@@ -27,6 +29,7 @@ section .data
     nENDLINEtag         db  'Tag' , 0   
     sEXIT               db  'EXIT' , 10 , 0
     cms                 db  'Coming Soon.......' , 10 , 0
+    xyz                 db  'MAIN( %f , %f , %f )' , 10 , 0
 
 
 
@@ -64,9 +67,10 @@ Yuawn:
     %define lim             [rbp - 0x1290]
     %define lim2            [rbp - 0x1298]
     %define isCollision     [rbp - 0x12a0]
-    %define startMenu       [rbp - 0x12a0 - Object_s * 2]
-    %define learnMode       [rbp - 0x12a0 - Object_s * 4]
-    %define competMode      [rbp - 0x12a0 - Object_s * 6]
+    %define startMenu       [rbp - 0x12a0 - Object_s * 1]
+    %define learnMode       [rbp - 0x12a0 - Object_s * 2]
+    %define competMode      [rbp - 0x12a0 - Object_s * 3]
+    %define terrain2        [rbp - 0x12a0 - Object_s * 4]
 
 
     call    glfwInit
@@ -105,7 +109,7 @@ Yuawn:
     mov     rdi,  g( window )
     call    glfwSetCursorPos
 
-    yuawn_xmm_call  glClearColor , g( f0 ) , g( f0 ) , g( f0_4 ) , g( f0 )
+    yuawn_xmm_call  glClearColor , g( f0 ) , g( f0 ) , g( f0 ) , g( f0 )
 
     yuawn_x64_call  glEnable , GL_DEPTH_TEST
     yuawn_x64_call  glDepthFunc , GL_LESS
@@ -130,10 +134,15 @@ Yuawn:
     call    glGetUniformLocation
     mov     g( TextureID ), eax ; 4
 
+
     ;lea     rdi, g( terrain )  ; GLOBAL
     lea     rdi,    terrain
     call    OObject
     Object_init_mac terrain , 'src/landx3.obj' , 'src/land.dds'
+
+    lea     rdi,    terrain2
+    call    OObject
+    Object_init_mac terrain2 , 'src/WTFx20.obj' , 'src/res.dds'
 
     lea     rdi, skybox
     call    OObject
@@ -157,6 +166,7 @@ Yuawn:
     call    Equip_setdir
     ;call    Equip_move
     ;;;;;;;
+    
     %assign i 0
     %rep    20
 
@@ -194,6 +204,7 @@ Yuawn:
     %assign i i+1
     %endrep
 
+
     lea     rdi,    startMenu
     call    OObject
     Object_init_mac startMenu , 'src/start.obj' , 'src/gamestart_none.dds'
@@ -206,7 +217,7 @@ Yuawn:
     call    OObject
     Object_init_mac competMode , 'src/start.obj' , 'src/gamestart_com.dds'
 
-    yuawn_xmm_call  glClearColor , g( f0 ) , g( f0 ) , g( f0_4 ) , g( f0 )
+    yuawn_xmm_call  glClearColor , g( f0 ) , g( f0 ) , g( f0 ) , g( f0 )
 
 Menu:
     mov     rdi,    GL_COLOR_BUFFER_BIT
@@ -471,6 +482,20 @@ littlefish:
     ;movss   g( aplayer + 8), xmm1 ;GLOBAL
     movss   [rbp - 0x1240 - 0x10 + 8], xmm1
 
+    %ifdef  DEBUG
+        ;@@@@@@@@@@@@@@@@@@@@@@@@ print player position
+        mov     rdi,    xyz
+        movss   xmm0,   dword player
+        movss   xmm1,   dword [rbp - 0x1240 - 0x10 + 4]
+        movss   xmm2,   dword [rbp - 0x1240 - 0x10 + 8]
+        cvtss2sd    xmm0,xmm0
+        cvtss2sd    xmm1,xmm1
+        cvtss2sd    xmm2,xmm2
+        mov     al,     3
+        call    printf
+    %endif
+
+
     call    getDirection
     movq    direction, xmm0
     ;movss   g( adirection + 8 ), xmm1
@@ -694,10 +719,6 @@ OUT:
 
 
 
-
-
-
-
     jmp Original_Enemy_Bullet_End
 
 
@@ -802,16 +823,42 @@ Original_Enemy_Bullet_End:
     lea     rdi,    terrain
     call    Object_mvcolli
 
-    ;cvtss2sd    xmm0,xmm0
-
     movss   tmp,    xmm0
-    movss   xmm0 , dword tmp
+
 
     movss   xmm0,   dword tmp
-    movsd   xmm1,   g( f_1000_0  ) 
-    cvtsd2ss    xmm1,xmm1
-    comiss  xmm0,   xmm1
-    jc      A
+    movss   xmm1,   dword g( f200_0  ) 
+    ;cvtsd2ss    xmm1,   xmm1
+    comiss  xmm1,   xmm0
+    jz      A
+
+    ;yuawn_print 'xmm0 != 200'
+
+
+
+
+
+    movq    xmm0,   player
+    movq    xmm1,   [rbp - 0x1240 - 0x10 + 8]
+    movq    xmm2,   nextStep
+    movq    xmm3,   [rbp - 0x1240 - 0x30 + 8]
+    lea     rdi,    terrain2
+    call    Object_mvcolli
+
+    ;cvtss2sd    xmm0,xmm0
+
+    movss   tmp2,    xmm0
+    movss   xmm0 , dword tmp2
+
+
+
+    movss   xmm0,   dword tmp2
+    movss   xmm1,   dword g( f200_0  ) 
+    ;cvtsd2ss    xmm1,   xmm1
+    comiss  xmm1,   xmm0
+    jz      A
+
+    ;yuawn_print 'xmm0 > 200'
 
     %ifdef  DEBUG
         mov     rdi,    bar
@@ -820,8 +867,35 @@ Original_Enemy_Bullet_End:
 
     mov     dword isCollision,    0
 
+    ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    ;movss   xmm0,   tmp
+    ;movss   xmm1,   tmp2
+    ;cvtss2sd    xmm1,   xmm1
+    ;cvtss2sd    xmm0,   xmm0
+    ;mov     rdi,    sff
+    ;mov     al,     2
+    ;call    printf
+    ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
     movss   xmm0,   tmp
-    addss   xmm0,   g( f10_0  )
+    movss   xmm1,   tmp2
+
+    comiss  xmm0,   xmm1
+    jc  XM1_BIG
+
+    movss   xmm0,   tmp
+    addss   xmm0,   g( LEN )
+    ;movss   xmm0,   g( f50_0 ) ; fixed
+    call    setPositionHeight
+
+    yuawn_x64_call  computeMatricesFromInputs , 0
+
+    jmp     B
+
+    XM1_BIG:
+    movss   xmm0,   tmp2
+    addss   xmm0,   g( LEN )
+    ;movss   xmm0,   g( f50_0 ) ; fixed
     call    setPositionHeight
 
     yuawn_x64_call  computeMatricesFromInputs , 0
@@ -829,6 +903,7 @@ Original_Enemy_Bullet_End:
     jmp     B
     A:
 
+    ;yuawn_print 'COLLI!!!'
     mov     dword isCollision,    1 
     yuawn_x64_call  computeMatricesFromInputs , 1
 
@@ -866,6 +941,9 @@ Original_Enemy_Bullet_End:
     lea     rdi,    terrain
     call    Object_draw
 
+    lea     rdi,    terrain2
+    call    Object_draw
+
     lea     rdi,    skybox
     call    Object_draw
 
@@ -898,6 +976,9 @@ EXIT:
     %endif
 
     lea     rdi,    terrain
+    call    Object_clrbuf
+
+    lea     rdi,    terrain2
     call    Object_clrbuf
 
     %ifdef  PRINT

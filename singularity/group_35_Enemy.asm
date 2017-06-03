@@ -203,9 +203,18 @@ yz: jc      OUT
 
     mov     rsi,    [ rcx + Enemy_asm.now_blood ]
     sub     rsi,    ad
+
+    mov     rax,    0
+    cmp     rsi,    rax
+    jl      TAG
     mov     [ rcx + Enemy_asm.now_blood ], rsi
+    jmp     TAG2
+    TAG:
+    mov     qword [ rcx + Enemy_asm.now_blood ], 0
 
     ;$$$$$$$$$$$$$$$$$$$$$print (long) new blood
+TAG2:
+    mov     rsi,    [ rcx + Enemy_asm.now_blood ]
     mov     rdi,    sd
     call    printf
 

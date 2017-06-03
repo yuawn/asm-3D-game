@@ -19,7 +19,7 @@ ASMFLAGS	= -f macho64 -w --prefix=_
 
 #$(foreach i,$(YUAWN2),./equipment/$(i))
 
-YUAWN		= main Enemy Object Weapon legacy
+YUAWN		= main Enemy Object Weapon legacy gd algo
 PPAP		= $(foreach i,$(YUAWN),./singularity/group_35_$(i))
 ASM 		= $(foreach i,$(PPAP),$(i).asm)
 OO	        = $(foreach i,$(PPAP),$(i).o)

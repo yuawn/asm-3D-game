@@ -12,13 +12,16 @@ WEAPON_INIT_AD          EQU     200
 WEAPON_CD               EQU     f0_5
 WEAPON_CD_sd            EQU     d0_5
 
+
+LEN                     EQU     f40_0
+up_rd                   EQU     f16_0
+dn_rd                   EQU     f16_0
 in_rd                   EQU     f3_0
 ot_rd                   EQU     f23_2
 
 Enemy_init_now_blood    EQU     1000
 Enemy_init_blood        EQU     1000
 
-section .data
 
 
 ;Mao  OAO!!!
