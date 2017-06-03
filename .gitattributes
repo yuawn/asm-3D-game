@@ -7,3 +7,4 @@ engine/include/glm/* linguist-vendored=false
 *.h linguist-language=Assembly
 *.css linguist-language=Assembly
 #*.hpp linguist-language=Assembly
+*.lfs* filter=lfs diff=lfs merge=lfs -text

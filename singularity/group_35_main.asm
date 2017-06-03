@@ -142,7 +142,7 @@ Yuawn:
 
     lea     rdi,    terrain2
     call    OObject
-    Object_init_mac terrain2 , 'src/WTFx20.obj' , 'src/res.dds'
+    Object_init_mac terrain2 , 'src/WTFx20.lfs.obj' , 'src/res.dds'
 
     lea     rdi, skybox
     call    OObject
