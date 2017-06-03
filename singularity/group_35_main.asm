@@ -964,7 +964,7 @@ JUD:
     jmp     DO
 
 EXIT:
-    call    sz
+    ;call    sz
     %ifdef  DEBUG
         call    sz
         lea     rdi,    terrain
