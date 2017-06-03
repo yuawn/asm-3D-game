@@ -36,6 +36,7 @@ Cama_Coli:
     %define tmp2    [ rbp - 0x38 ]
     %define start   [ rbp - 0x40 ]
     %define fixh    [ rbp - 0x48 ]
+    %define posy_hd [ rbp - 0x50]
 
     push    rbp
     mov     rbp,    rsp
@@ -52,6 +53,11 @@ Cama_Coli:
     call    vec_vec3_sz
     mov     lim,    rax
     mov     qword now,    0          ; cvtss2sd is my friend :D
+
+    movss   xmm0,   dword posy
+    subss   xmm0,   dword g( HEAD )
+    movss   posy_hd,   xmm0
+
 
     LOOP:
     ;mov     rdi,    sd ;;;@@@@@@@@@@@
@@ -70,7 +76,7 @@ Cama_Coli:
 
 
     movss   xmm0,   dword [ rax + Object_asm.vertices + rbx + 4 ]
-    subss   xmm0,   dword posy
+    subss   xmm0,   dword posy_hd
 
     movss   tmp2,   xmm0     
     lea     rdi,    tmp2  
@@ -105,7 +111,7 @@ xy: jc      OUT
 xz: jc      OUT
 
     movss   xmm0,   dword [ rax + Object_asm.vertices + rbx + 4 ]
-    subss   xmm0,   dword posy
+    subss   xmm0,   dword posy_hd
     movss   tmp,    xmm0     
     lea     rdi,    tmp  
     call    sqr
