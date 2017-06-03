@@ -25,8 +25,10 @@ Enjoy the game :D
 ![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/gamestarCom.png)
 src:https://staticdelivery.nexusmods.com/mods/161/images/68-3-1351215827.jpg
 - Some ScreenShot.
+<div align="center">
 <img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/i.png" width = "412" height = "257">
 <img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/a.png" width = "412" height = "257">
+</div>
 <img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/f.png" width = "412" height = "257">
 <img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/h.png" width = "412" height = "257">
 <!--![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/i.png)
