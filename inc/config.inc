@@ -15,7 +15,7 @@ WEAPON_CD_sd            EQU     d0_5
 
 HEAD                    EQU     f40_0
 LEN                     EQU     f70_0
-up_rd                   EQU     f17_0
+up_rd                   EQU     f12_0
 dn_rd                   EQU     f16_0
 in_rd                   EQU     f3_0
 ot_rd                   EQU     f23_2

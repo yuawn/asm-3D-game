@@ -75,23 +75,8 @@ moveCollision_asm:
     mov     start,  rsi
     movq    pos,    xmm0
     movsd   [ rbp - 0x20], xmm1
-    movss   xmm2,   dword g( f100_0 )
+    movss   xmm2,   dword g( f0 )
     movss   fixh,   xmm2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     mov     rax,    class
     lea     rdi,    [ rax + Object_asm.vertices ]
@@ -197,7 +182,7 @@ yz: jc      OUT
 
     movss   xmm0,   dword [ rax + Object_asm.vertices + rbx + 4 ]   
     movss   xmm1,   dword fixh
-    comiss  xmm0,   xmm1
+    comiss  xmm1,   xmm0
     jnc     inn 
     movss   fixh,   xmm0
 inn:
@@ -268,9 +253,7 @@ final: ;CTF
         call    printf
     %endif
 
-    yuawn_print 'OBJ coli'
-
-    movss   xmm0,   g( f200_0 )
+    movss   xmm0,   g( f_10000_0 )
     leave
     ret
 
