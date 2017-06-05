@@ -272,6 +272,6 @@ final: ;CTF
     cmp     rbx,    rax
     jc      LOOP2
 
-    movss   xmm0,   fixh
+    movss   xmm0,   dword fixh
     leave
     ret
