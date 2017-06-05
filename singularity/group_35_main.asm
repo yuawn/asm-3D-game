@@ -24,7 +24,7 @@ section .data
     soo                 db  'SO %lf %lf' , 10 , 0
     sdd                 db  '%d %d' , 10 , 0
     sst                 db  '%s' , 10 , 0
-    bar                 db  'Yuawn' , 10 , 0
+    bar                 db  'OURCRAFT 0D' , 10 , 0
     db_lasttime         db  'lasttime ---> %f' , 10 , 0
     nENDLINEtag         db  'Tag' , 0   
     sEXIT               db  'EXIT' , 10 , 0
@@ -71,6 +71,7 @@ Yuawn:
     %define learnMode       [rbp - 0x12a0 - Object_s * 2]
     %define competMode      [rbp - 0x12a0 - Object_s * 3]
     %define terrain2        [rbp - 0x12a0 - Object_s * 4]
+    %define castle          [rbp - 0x12a0 - Object_s * 5]
 
 
     call    glfwInit
@@ -143,6 +144,12 @@ Yuawn:
     lea     rdi,    terrain2
     call    OObject
     Object_init_mac terrain2 , 'src/WTFx20.lfs.obj' , 'src/res.dds'
+
+    %ifdef  CASTLE
+    lea     rdi,    castle
+    call    OObject
+    Object_init_mac castle , 'src/castlex30.obj' , 'src/castle.dds'
+    %endif
 
     lea     rdi, skybox
     call    OObject
@@ -681,7 +688,7 @@ OUT:
 
             lea     rdi,    tmp2
             call    Object_clrbuf
-            
+
             mov     rdi,    tmp2
             Object_init_mac [rdi] , 'src/robotx5.obj' , 'src/robot.dds'
 
@@ -848,11 +855,6 @@ Original_Enemy_Bullet_End:
     comiss  xmm1,   xmm0
     jz      A
 
-    ;yuawn_print 'xmm0 != 200'
-
-
-
-
 
     movq    xmm0,   player
     movq    xmm1,   [rbp - 0x1240 - 0x10 + 8]
@@ -860,12 +862,33 @@ Original_Enemy_Bullet_End:
     movq    xmm3,   [rbp - 0x1240 - 0x30 + 8]
     lea     rdi,    terrain2
     call    Object_mvcolli
+    movss   tmp2,   xmm0
 
-    ;cvtss2sd    xmm0,xmm0
+    movss   xmm0,   dword tmp2
+    movss   xmm1,   dword g( f200_0  ) 
+    comiss  xmm1,   xmm0
+    jz      A
 
-    movss   tmp2,    xmm0
-    movss   xmm0 , dword tmp2
+    ;@@@@@@@@@@@@@@@@@@@@@@@@ NDEF_CASTLE
+    %ifndef CASTLE
+    jmp     NDEF_CASTLE
+    %endif
 
+    movss   xmm0,   tmp
+    movss   xmm1,   tmp2
+    comiss  xmm1,   xmm0
+    jc  XM1_SML
+    movss   tmp,    xmm1
+    XM1_SML:
+
+    movq    xmm0,   player
+    movq    xmm1,   [rbp - 0x1240 - 0x10 + 8]
+    movq    xmm2,   nextStep
+    movq    xmm3,   [rbp - 0x1240 - 0x30 + 8]
+    lea     rdi,    castle
+    call    Object_mvcolli
+
+    movss   tmp2,   xmm0
 
 
     movss   xmm0,   dword tmp2
@@ -874,12 +897,7 @@ Original_Enemy_Bullet_End:
     comiss  xmm1,   xmm0
     jz      A
 
-    ;yuawn_print 'xmm0 > 200'
-
-    %ifdef  DEBUG
-        mov     rdi,    bar
-        call    printf
-    %endif
+    NDEF_CASTLE:
 
     mov     dword isCollision,    0
 
@@ -960,6 +978,11 @@ Original_Enemy_Bullet_End:
     lea     rdi,    terrain2
     call    Object_draw
 
+    %ifdef  CASTLE
+    lea     rdi,    castle
+    call    Object_draw
+    %endif
+
     lea     rdi,    skybox
     call    Object_draw
 
@@ -996,6 +1019,11 @@ EXIT:
 
     lea     rdi,    terrain2
     call    Object_clrbuf
+
+    %ifdef  CASTLE
+    lea     rdi,    castle
+    call    Object_clrbuf
+    %endif
 
     %ifdef  PRINT
         yuawn_print '[Free]  skybox'

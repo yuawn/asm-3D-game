@@ -1,5 +1,5 @@
-obj = open("lll.obj","rb")
-res = open("lllx60.obj","wb")
+obj = open("castle.obj","rb")
+res = open("castlex30.obj","wb")
     
 
 o = ['v']
@@ -22,7 +22,7 @@ def resize_v(size):
             
 
 
-resize_v(60);
+resize_v(30);
 
 
 
