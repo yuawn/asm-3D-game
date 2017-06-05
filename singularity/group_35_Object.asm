@@ -342,12 +342,12 @@ clearBuffer_asm:;TAG
     lea     rsi,    [ rax + Object_asm.uvbuffer ]
     call    glDeleteBuffers
 
-    %ifdef  DEBUG
-        mov     rdi,    1
-        mov     rax,    [ rbp - 0x8 ]
-        lea     rsi,    [ rax + Object_asm.Texture ]
-        call    glDeleteTextures
-    %endif
+    ;%ifdef  DEBUG
+    mov     rdi,    1
+    mov     rax,    [ rbp - 0x8 ]
+    lea     rsi,    [ rax + Object_asm.Texture ]
+    call    glDeleteTextures
+    ;%endif
 
     %ifdef  DEBUG
         mov     rdi,    str2

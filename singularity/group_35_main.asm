@@ -639,6 +639,10 @@ OUT:
             mov     rbx,    800
             cmp     rax,    rbx
             jnz     sz600
+
+            lea     rdi,    tmp2
+            call    Object_clrbuf
+
             mov     rdi,    tmp2
             Object_init_mac [rdi] , 'src/robotx2.obj' , 'src/robot.dds'
             
@@ -648,6 +652,10 @@ OUT:
             mov     rbx,    600
             cmp     rax,    rbx
             jnz     sz400
+
+            lea     rdi,    tmp2
+            call    Object_clrbuf
+
             mov     rdi,    tmp2
             Object_init_mac [rdi] , 'src/robotx3.obj' , 'src/robot.dds'
 
@@ -657,6 +665,10 @@ OUT:
             mov     rbx,    400
             cmp     rax,    rbx
             jnz     sz200
+
+            lea     rdi,    tmp2
+            call    Object_clrbuf
+
             mov     rdi,    tmp2
             Object_init_mac [rdi] , 'src/robotx4.obj' , 'src/robot.dds'
 
@@ -666,6 +678,10 @@ OUT:
             mov     rbx,    200
             cmp     rax,    rbx
             jnz     sz0
+
+            lea     rdi,    tmp2
+            call    Object_clrbuf
+            
             mov     rdi,    tmp2
             Object_init_mac [rdi] , 'src/robotx5.obj' , 'src/robot.dds'
 
