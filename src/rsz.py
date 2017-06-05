@@ -1,5 +1,5 @@
 obj = open("castle.obj","rb")
-res = open("castlex30.obj","wb")
+res = open("castlex10.obj","wb")
     
 
 o = ['v']
@@ -14,15 +14,14 @@ def resize_v(size):
         tmp = ''
         tmp += l2[0] + ' '
         l2.remove(l2[0])
-        #print l2
+        l2[0] = str( float( l2[0] ) + ( 800. / size ) )
         for i in l2:
-            print i
             tmp += str( float(i) * size ) + ' '
         res.write( tmp + '\x0a' )
             
 
 
-resize_v(30);
+resize_v(10);
 
 
 

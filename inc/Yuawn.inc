@@ -1,6 +1,7 @@
 ;Yuawn
 
 ;%define DEBUG
+%define CASTLE
 ;%define Original_Enemy_Bullet_p
 
 %include "inc/:D.inc"

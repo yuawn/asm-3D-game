@@ -148,7 +148,7 @@ Yuawn:
     %ifdef  CASTLE
     lea     rdi,    castle
     call    OObject
-    Object_init_mac castle , 'src/castlex30.obj' , 'src/castle.dds'
+    Object_init_mac castle , 'src/castlex10.obj' , 'src/castle.dds'
     %endif
 
     lea     rdi, skybox
