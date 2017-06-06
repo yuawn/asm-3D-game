@@ -24,8 +24,9 @@ brew install glew glfw glm
 Enjoy the game :D
 ![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/gamestarCom.png)
 src:https://staticdelivery.nexusmods.com/mods/161/images/68-3-1351215827.jpg
-![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/j.png)
 ![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/k.png)
+![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/j.png)
+- skybox and terrain obj png are from [here](https://docs.google.com/file/d/0BynXZXeeIM6dcXJ2Znh4cndzR1E/edit)
 - Some ScreenShots.
 <div align="center">
 <img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/i.png" width = "421" height = "257">
