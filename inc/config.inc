@@ -18,7 +18,7 @@ asm_LEN                 EQU     f70_0
 asm_up_rd               EQU     f12_0
 asm_dn_rd               EQU     f16_0
 in_rd                   EQU     f3_0
-ot_rd                   EQU     f23_2
+ot_rd                   EQU     f20_0
 
 Enemy_init_now_blood    EQU     1000
 Enemy_init_blood        EQU     1000

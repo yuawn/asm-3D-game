@@ -214,9 +214,11 @@ yz: jc      OUT
 
     ;$$$$$$$$$$$$$$$$$$$$$print (long) new blood
 TAG2:
-    mov     rsi,    [ rcx + Enemy_asm.now_blood ]
-    mov     rdi,    sd
-    call    printf
+    %ifdef  DEBUG
+        mov     rsi,    [ rcx + Enemy_asm.now_blood ]
+        mov     rdi,    sd
+        call    printf
+    %endif
 
     mov     rcx,    class
     mov     rax,    [ rcx + Enemy_asm.now_blood ]

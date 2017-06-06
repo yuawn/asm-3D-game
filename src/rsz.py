@@ -1,5 +1,5 @@
-obj = open("new_skybox.obj","rb")
-res = open("new_skyboxx600.obj","wb")
+obj = open("nn_skybox.obj","rb")
+res = open("nn_skyboxx500.obj","wb")
     
 
 o = ['v']
@@ -14,14 +14,14 @@ def resize_v(size):
         tmp = ''
         tmp += l2[0] + ' '
         l2.remove(l2[0])
-        l2[0] = str( float( l2[0] ) + ( 800. / size ) )
+        l2[0] = str( float( l2[0] ) + ( 400. / size ) )
+        l2[2] = str( float( l2[2] ) - ( 400. / size ) )
         for i in l2:
             tmp += str( float(i) * size ) + ' '
         res.write( tmp + '\x0a' )
             
 
-
-resize_v(600);
+resize_v(500);
 
 
 

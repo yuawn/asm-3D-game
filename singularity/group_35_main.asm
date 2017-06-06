@@ -164,7 +164,7 @@ Yuawn:
 
     lea     rdi,    skybox
     call    OObject
-    Object_init_mac skybox , 'src/new_skyboxx600.obj' , 'src/skybox.dds'
+    Object_init_mac skybox , 'src/skyboxx3.obj' , 'src/skybox.dds'
     lea     rdi,    skybox
     call    Object_oct_init
     ;;;;; TAG
@@ -649,7 +649,7 @@ OUT:
             cmp     rax,    rbx
             jl      BOT2
 
-            yuawn_print 'innnnnnnnn'
+            ;yuawn_print 'innnnnnnnn'
 
             mov     rdi,    tmp
             call    weap_dead
@@ -847,7 +847,7 @@ Original_Enemy_Bullet:
 Original_Enemy_Bullet_End:
 
 ;jmp OLD_Coli
-
+;;@@@@@@@@@@@@@@@@@@@@@@@@ OcTree
 OcTree:
     movq    xmm0,   player
     movq    xmm1,   [rbp - 0x1240 - 0x10 + 8]
@@ -861,14 +861,14 @@ OcTree:
     comiss  xmm1,   xmm0
     jz      A
 
-    ;%ifdef  DEBUG
+    %ifdef  DEBUG
         movss   xmm0,   tmp
         addss   xmm0,   g( LEN )
         cvtss2sd xmm0,xmm0
         mov     rdi,    sf0
         mov     al, 1
         call    printf
-    ;%endif
+    %endif
 
     movss   xmm0,   tmp
     addss   xmm0,   g( LEN )

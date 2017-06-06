@@ -1,6 +1,6 @@
 [BITS 64]
 
-global  asmddaa , speed , sight , PLAYER_INITIAL_X , PLAYER_INITIAL_Y , PLAYER_INITIAL_Z , HEAD , LEN , up_rd , dn_rd
+global  asmddaa , speed , sight , PLAYER_INITIAL_X , PLAYER_INITIAL_Y , PLAYER_INITIAL_Z , HEAD , LEN , up_rd , dn_rd , ppp
 
 
 section .data
@@ -14,6 +14,7 @@ section .data
     LEN                 dd  70.0    ; float
     up_rd               dd  12.0    ; float
     dn_rd               dd  16.0    ; float
+    ppp                 db  0       ; bool
 
 
     asmddaa             dq  13377
