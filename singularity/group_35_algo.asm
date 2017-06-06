@@ -16,6 +16,7 @@ global  Cama_Coli
 section .data
     sd      db  'NEW int: %d' , 10 , 0
     sf      db  'y = %f' , 10 , 0
+    sff     db  '%f %f' , 10 , 0
     xyz     db  '( %f , %f , %f )' , 10 , 0
     xyz2    db  'base( %f , %f , %f )' , 10 , 0
     xyz3    db  'base2( %f , %f , %f )' , 10 , 0
@@ -36,7 +37,7 @@ Cama_Coli:
     %define tmp2    [ rbp - 0x38 ]
     %define start   [ rbp - 0x40 ]
     %define fixh    [ rbp - 0x48 ]
-    %define posy_hd [ rbp - 0x50]
+    %define posy_hd [ rbp - 0x50 ]
 
     push    rbp
     mov     rbp,    rsp
@@ -46,7 +47,7 @@ Cama_Coli:
     movq    pos,    xmm0
     movsd   [ rbp - 0x20 ], xmm1
     movss   xmm2,   dword g( f0 )
-    movss   fixh,   xmm2
+    movss   dword fixh,   xmm2
 
     mov     rax,    class
     lea     rdi,    [ rax + Object_asm.vertices ]
@@ -55,8 +56,8 @@ Cama_Coli:
     mov     qword now,    0          ; cvtss2sd is my friend :D
 
     movss   xmm0,   dword posy
-    subss   xmm0,   dword g( HEAD )
-    movss   posy_hd,   xmm0
+    subss   xmm0,   dword g( asm_HEAD )
+    movss   dword posy_hd,   xmm0
 
 
     LOOP:
@@ -86,7 +87,7 @@ Cama_Coli:
     movss   xmm1,   dword tmp
     addss   xmm1,   dword tmp2
 
-    lea     rdi,    g( up_rd  )
+    lea     rdi,    g( asm_up_rd  )
     call    sqr
     comiss  xmm0,   xmm1                      ; FUCKING SS :P
 xy: jc      OUT
@@ -105,7 +106,7 @@ xy: jc      OUT
     movss   tmp2,   xmm0
     movss   xmm1,   dword tmp
     addss   xmm1,   dword tmp2
-    lea     rdi,    g( up_rd  )
+    lea     rdi,    g( asm_up_rd  )
     call    sqr
     comiss  xmm0,   xmm1
 xz: jc      OUT
@@ -124,7 +125,7 @@ xz: jc      OUT
     movss   tmp2,   xmm0
     movss   xmm1,   dword tmp
     addss   xmm1,   dword tmp2
-    lea     rdi,    g( up_rd  )
+    lea     rdi,    g( asm_up_rd  )
     call    sqr
     comiss  xmm0,   xmm1
 yz: jc      OUT
@@ -159,7 +160,7 @@ yz: jc      OUT
     mov     qword now,    0
 
     movss   xmm0,   dword posy
-    subss   xmm0,   dword g( LEN )
+    subss   xmm0,   dword g( asm_LEN )
     movss   posy,   xmm0
 
 
@@ -183,7 +184,7 @@ LOOP2:
     movss   tmp2,   xmm0
     movss   xmm1,   dword tmp
     addss   xmm1,   dword tmp2
-    lea     rdi,    g( dn_rd  )
+    lea     rdi,    g( asm_dn_rd  )
     call    sqr
     comiss  xmm0,   xmm1
 xy2: jc     OUT2
@@ -202,7 +203,7 @@ xy2: jc     OUT2
     movss   tmp2,   xmm0
     movss   xmm1,   dword tmp
     addss   xmm1,   dword tmp2
-    lea     rdi,    g( dn_rd  )
+    lea     rdi,    g( asm_dn_rd  )
     call    sqr
     comiss  xmm0,   xmm1
 xz2: jc     OUT2
@@ -222,7 +223,7 @@ xz2: jc     OUT2
     movss   tmp2,   xmm0
     movss   xmm1,   dword tmp
     addss   xmm1,   dword tmp2
-    lea     rdi,    g( dn_rd  )
+    lea     rdi,    g( asm_dn_rd  )
     call    sqr
     comiss  xmm0,   xmm1
 yz2: jc     OUT2
@@ -262,7 +263,7 @@ final: ;CTF
     movss   xmm1,   dword fixh
     comiss  xmm0,   xmm1
     jc      OUT2
-    movss   fixh,   xmm0
+    movss   dword fixh,   xmm0
 
     OUT2:
     mov     rax,    lim
@@ -272,6 +273,9 @@ final: ;CTF
     cmp     rbx,    rax
     jc      LOOP2
 
+
+
+    U:
     movss   xmm0,   dword fixh
     leave
     ret

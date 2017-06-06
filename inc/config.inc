@@ -13,10 +13,10 @@ WEAPON_CD               EQU     f0_5
 WEAPON_CD_sd            EQU     d0_5
 
 
-HEAD                    EQU     f40_0
-LEN                     EQU     f70_0
-up_rd                   EQU     f12_0
-dn_rd                   EQU     f16_0
+asm_HEAD                EQU     f40_0
+asm_LEN                 EQU     f70_0
+asm_up_rd               EQU     f12_0
+asm_dn_rd               EQU     f16_0
 in_rd                   EQU     f3_0
 ot_rd                   EQU     f23_2
 

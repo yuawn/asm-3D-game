@@ -4,7 +4,7 @@
 global  Yuawn
 
 extern  set_now_blood_asm , set_blood_asm , weapon_get_ad_asm \
-, weapon_set_ad_asm , get_now_blood_asm
+, weapon_set_ad_asm , get_now_blood_asm , ocroot
 
 
 
@@ -845,13 +845,9 @@ Original_Enemy_Bullet_End:
     movq    xmm3,   [rbp - 0x1240 - 0x30 + 8]
     lea     rdi,    terrain
     call    Object_mvcolli
-
     movss   tmp,    xmm0
-
-
     movss   xmm0,   dword tmp
-    movss   xmm1,   dword g( f200_0  ) 
-    ;cvtsd2ss    xmm1,   xmm1
+    movss   xmm1,   dword g( f200_0 ) 
     comiss  xmm1,   xmm0
     jz      A
 
@@ -918,7 +914,11 @@ Original_Enemy_Bullet_End:
     jc  XM1_BIG
 
     movss   xmm0,   tmp
-    addss   xmm0,   g( LEN )
+    movss   xmm0,   g( f0 )
+    jz      A
+
+    movss   xmm0,   tmp
+    addss   xmm0,   g( asm_LEN )
     ;movss   xmm0,   g( f50_0 ) ; fixed
     call    setPositionHeight
 
@@ -928,7 +928,11 @@ Original_Enemy_Bullet_End:
 
     XM1_BIG:
     movss   xmm0,   tmp2
-    addss   xmm0,   g( LEN )
+    movss   xmm0,   g( f0 )
+    jz      A
+
+    movss   xmm0,   tmp2
+    addss   xmm0,   g( asm_LEN )
     ;movss   xmm0,   g( f50_0 ) ; fixed
     call    setPositionHeight
 
