@@ -115,6 +115,15 @@ jmp     %%endstr
 extern  _Z9yuawn_divii
 yuawn_divii     EQU   _Z9yuawn_divii
 
+
+;OcTree
+extern  _Z8oct_initv , _Z13oct_traversalN3glm5tvec3IfLNS_9precisionE0EEES2_
+
+
+oct_init           EQU   _Z8oct_initv
+oct_traversal      EQU   _Z13oct_traversalN3glm5tvec3IfLNS_9precisionE0EEES2_
+
+
 ;lib
 extern  _ZN6ObjectC1Ev , _ZN5EnemyC1Ev , _ZN9EquipmentC1Ev , _Z2y1P5EnemyP6Object , _Z3abcffff , _ZN6Object4initEPKcS1_ \
 , _ZN3glm5tvec3IfLNS_9precisionE0EEC1IdddEET_T0_T1_ , _ZN9Equipment4moveEN3glm5tvec3IfLNS0_9precisionE0EEE \
@@ -128,7 +137,7 @@ extern  _ZN6ObjectC1Ev , _ZN5EnemyC1Ev , _ZN9EquipmentC1Ev , _Z2y1P5EnemyP6Objec
 , _ZN5Enemy4moveEN3glm5tvec3IfLNS0_9precisionE0EEE , _Z17setPositionHeightf \
 , _Z25computeMatricesFromInputsb , _ZN9Equipment5aimAtEN3glm5tvec3IfLNS0_9precisionE0EEES3_ \
 , _ZN5Enemy10selfRotateEf , _ZN6Object4drawEv , _Z4y4_2v , _ZN5Enemy6DamageEN3glm5tvec3IfLNS0_9precisionE0EEEl \
-, _ZN6Object17moveCollision_oldEN3glm5tvec3IfLNS0_9precisionE0EEES3_
+, _ZN6Object17moveCollision_oldEN3glm5tvec3IfLNS0_9precisionE0EEES3_ , _ZN6Object12obj_oct_initEv
 
 
 
@@ -145,6 +154,7 @@ Object_clrbuf       EQU   _ZN6Object11clearBufferEv
 Object_mvcolli      EQU   _ZN6Object13moveCollisionEN3glm5tvec3IfLNS0_9precisionE0EEES3_
 Object_mvcolli_old  EQU   _ZN6Object17moveCollision_oldEN3glm5tvec3IfLNS0_9precisionE0EEES3_
 Object_draw         EQU   _ZN6Object4drawEv
+Object_oct_init     EQU   _ZN6Object12obj_oct_initEv
 Weapon_init         EQU   _ZN6Weapon4initEN3glm5tvec3IfLNS0_9precisionE0EEES3_
 weap_getstate       EQU   _ZN6Weapon8getStateEv
 weap_move           EQU   _ZN6Weapon4moveEv

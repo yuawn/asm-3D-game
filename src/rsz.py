@@ -1,5 +1,5 @@
-obj = open("castle.obj","rb")
-res = open("castlex10.obj","wb")
+obj = open("new_skybox.obj","rb")
+res = open("new_skyboxx600.obj","wb")
     
 
 o = ['v']
@@ -21,7 +21,7 @@ def resize_v(size):
             
 
 
-resize_v(10);
+resize_v(600);
 
 
 

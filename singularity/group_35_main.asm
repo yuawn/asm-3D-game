@@ -6,6 +6,8 @@ global  Yuawn
 extern  set_now_blood_asm , set_blood_asm , weapon_get_ad_asm \
 , weapon_set_ad_asm , get_now_blood_asm , ocroot
 
+extern  LEN
+
 
 
 section .data
@@ -21,6 +23,7 @@ section .data
     sff                 db  'SFF %f %f' , 10 , 0
     sd                  db  'SD %d' , 10 , 0
     sf                  db  'SF %f' , 10 , 0
+    sf0                 db  'FIXH %f' , 10 , 0
     soo                 db  'SO %lf %lf' , 10 , 0
     sdd                 db  '%d %d' , 10 , 0
     sst                 db  '%s' , 10 , 0
@@ -136,24 +139,34 @@ Yuawn:
     mov     g( TextureID ), eax ; 4
 
 
+    call    oct_init            ; OcTree init !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     ;lea     rdi, g( terrain )  ; GLOBAL
     lea     rdi,    terrain
     call    OObject
     Object_init_mac terrain , 'src/landx3.obj' , 'src/land.dds'
+    lea     rdi,    terrain
+    call    Object_oct_init
 
     lea     rdi,    terrain2
     call    OObject
     Object_init_mac terrain2 , 'src/WTFx20.lfs.obj' , 'src/res.dds'
+    lea     rdi,    terrain2
+    call    Object_oct_init
 
     %ifdef  CASTLE
     lea     rdi,    castle
     call    OObject
     Object_init_mac castle , 'src/castlex10.obj' , 'src/castle.dds'
+    lea     rdi,    castle
+    call    Object_oct_init
     %endif
 
-    lea     rdi, skybox
+    lea     rdi,    skybox
     call    OObject
-    Object_init_mac skybox , 'src/skyboxx3.obj' , 'src/skybox.dds'
+    Object_init_mac skybox , 'src/new_skyboxx600.obj' , 'src/skybox.dds'
+    lea     rdi,    skybox
+    call    Object_oct_init
     ;;;;; TAG
     lea     rdi, gun
     call    EEquip
@@ -832,13 +845,47 @@ Original_Enemy_Bullet:
  
     QQ:
 Original_Enemy_Bullet_End:
-    ;movq    xmm0,   player
-    ;movq    xmm1,   [rbp - 0x1240 - 0x10 + 8]
-    ;movq    xmm2,   direction
-    ;movq    xmm3,   [rbp - 0x1240 - 0x20 + 8] 
-    ;movq    xmm4,   nextStep
-    ;movq    xmm5,   [rbp - 0x1240 - 0x30 + 8]      
 
+;jmp OLD_Coli
+
+OcTree:
+    movq    xmm0,   player
+    movq    xmm1,   [rbp - 0x1240 - 0x10 + 8]
+    movq    xmm2,   nextStep
+    movq    xmm3,   [rbp - 0x1240 - 0x30 + 8]
+    call    oct_traversal
+
+    movss   tmp,    xmm0
+    movss   xmm0,   dword tmp
+    movss   xmm1,   dword g( f200_0 ) 
+    comiss  xmm1,   xmm0
+    jz      A
+
+    ;%ifdef  DEBUG
+        movss   xmm0,   tmp
+        addss   xmm0,   g( LEN )
+        cvtss2sd xmm0,xmm0
+        mov     rdi,    sf0
+        mov     al, 1
+        call    printf
+    ;%endif
+
+    movss   xmm0,   tmp
+    addss   xmm0,   g( LEN )
+    call    setPositionHeight
+
+    yuawn_x64_call  computeMatricesFromInputs , 0
+
+    jmp     B
+
+
+OcTree_End:
+
+    jmp     OLD_Coli_END
+
+OLD_Coli:
+    ;mov     rdi,    bar
+    ;call    printf
     movq    xmm0,   player
     movq    xmm1,   [rbp - 0x1240 - 0x10 + 8]
     movq    xmm2,   nextStep
@@ -946,6 +993,8 @@ Original_Enemy_Bullet_End:
     yuawn_x64_call  computeMatricesFromInputs , 1
 
     B:
+OLD_Coli_END:
+
     movq    xmm0,   player
     movq    xmm1,   [rbp - 0x1240 - 0x10 + 8]
     movq    xmm2,   direction
@@ -972,9 +1021,6 @@ Original_Enemy_Bullet_End:
     %endrep
 
     call    y4 ; MVP
-
-    lea     rdi,    startMenu
-    call    Object_draw
 
     lea     rdi,    terrain
     call    Object_draw
