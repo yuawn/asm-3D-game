@@ -27,11 +27,14 @@ src:https://staticdelivery.nexusmods.com/mods/161/images/68-3-1351215827.jpg
 - Some ScreenShots.
 <div align="center">
 <img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/i.png" width = "421" height = "257">
-<img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/a.png" width = "421" height = "257">
+<img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/j.png" width = "421" height = "257">
 </div>
 <div align="center">
+<img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/a.png" width = "421" height = "257">
 <img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/f.png" width = "421" height = "257">
+</div>
 <img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/h.png" width = "421" height = "257">
+<img src="https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/k.png" width = "421" height = "257">
 </div>
 <!--![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/i.png)
 ![img](https://github.com/ssspeedgit00/ASM_Final_Project_2017/blob/master/src/screenshot/a.png)

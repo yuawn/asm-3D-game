@@ -75,6 +75,7 @@ Yuawn:
     %define competMode      [rbp - 0x12a0 - Object_s * 3]
     %define terrain2        [rbp - 0x12a0 - Object_s * 4]
     %define castle          [rbp - 0x12a0 - Object_s * 5]
+    %define loading         [rbp - 0x12a0 - Object_s * 6]
 
 
     call    glfwInit
@@ -137,6 +138,27 @@ Yuawn:
     mov     rsi, myTextureSampler
     call    glGetUniformLocation
     mov     g( TextureID ), eax ; 4
+
+    ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ START LOADING
+
+    mov     rdi,    GL_COLOR_BUFFER_BIT
+    or      rdi,    GL_DEPTH_BUFFER_BIT
+    call    glClear
+
+    yuawn_x64_call  glUseProgram , g( programID )
+
+    call    y4_2
+
+    lea     rdi,    loading
+    call    OObject
+    Object_init_mac loading , 'src/start.obj' , 'src/loading.dds'
+
+    lea     rdi,    loading
+    call    Object_draw
+
+    yuawn_x64_call  glfwSwapBuffers , g( window )
+
+    ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ START LOADING
 
 
     call    oct_init            ; OcTree init !!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -224,6 +246,12 @@ Yuawn:
     %assign i i+1
     %endrep
 
+    ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END LOADING
+
+    lea     rdi,    loading
+    call    Object_clrbuf
+
+    ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END LOADING
 
     lea     rdi,    startMenu
     call    OObject
