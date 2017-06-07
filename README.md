@@ -13,10 +13,17 @@
 [![Code Climate](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017/badges/gpa.svg?style=flat-square)](https://codeclimate.com/github/ssspeedgit00/ASM_Final_Project_2017)-->
 ## ASM Fianl Project 2017 - OURCRAFT 0D
 **OURCRAFT 0D** , an Assembly(**NASM**) game project with **OpenGL** **GLEW** **GLFW** **glm** on **OS X**.
+
+### Compile 好的
+- 點開./game/run
+
+### Compile
 - dependencies
 ```
 brew install glew glfw glm
+make clean && make
 ```
+
 - Start the game
 ```
 ./run.sh
